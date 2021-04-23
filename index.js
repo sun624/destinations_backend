@@ -29,10 +29,10 @@ server.get("/", (req, res) => {
   //res.send(db);
   //console.log("hello from /");
   const { location } = req.query;
-  if (!location) return res.send(`<h1>${db.length}</h1>`);
+  if (!location) return res.send(db);
   const locations = db.filter((place) => place.location === location);
   // res.send(locations);
-  res.send(`<h1>${locations.length}</h1>`)
+  res.send(locations)
 });
 
 // server.get("/:location",(req,res)=>{
