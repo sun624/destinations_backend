@@ -20,6 +20,12 @@ server.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}.`);
 });
 
+server.get("/", (req, res) => {
+  res.send(db);
+ 
+
+});
+
 //GET / best practice is to use query parameters
 server.get("/", (req, res) => {
   //res.send(db);
@@ -31,13 +37,13 @@ server.get("/", (req, res) => {
   res.send(locations);
 });
 
-server.get("/:location",(req,res)=>{
-  const location = req.params;
-  if(!location) return res.status(400).json({error:"need location"});
+// server.get("/:location",(req,res)=>{
+//   const location = req.params;
+//   if(!location) return res.status(400).json({error:"need location"});
 
-  const locations = db.filter(place => place.location === location);
-  res.send(locations);
-})
+//   const locations = db.filter(place => place.location === location);
+//   res.send(locations);
+// })
 
 //POST /
 server.post("/", async (req, res) => {
