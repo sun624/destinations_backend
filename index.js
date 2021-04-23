@@ -55,16 +55,16 @@ server.post("/", async (req, res) => {
 
   const uid = getUID();
   const photo = await getPhoto(name);
-
-  db.push({
+  const newLocation = {
     uid,
     name,
     location,
     photo,
     description: description || "",
-  });
+  };
+  db.push(newLocation);
 
-  res.send({ uid });
+  res.send(newLocation);
   console.log(db);
 });
 
