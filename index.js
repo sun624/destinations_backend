@@ -22,7 +22,7 @@ server.listen(PORT, () => {
 
 server.get("/", (req, res) => {
   res.send(db);
-  //console.log("hello from /");
+ 
 
 });
 
