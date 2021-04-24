@@ -40,6 +40,7 @@ server.get("/", (req, res) => {
 
 //POST /
 server.post("/", async (req, res) => {
+  console.log(req.body)
   const { name, location, description } = req.body;
 
   if (!name || !location) {
