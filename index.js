@@ -31,7 +31,7 @@ server.get("/", (req, res) => {
   //res.send(db);
   //console.log("hello from /");
   const {location} = req.query;
-  if (!location) return res.status(400).json({ error: "need location" });
+  if (!location) return res.send(db);
 
   const locations = db.filter((place) => place.location === location);
   res.send(locations);
