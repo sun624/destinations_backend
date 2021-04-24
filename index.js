@@ -20,16 +20,9 @@ server.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}.`);
 });
 
-// server.get("/", (req, res) => {
-//   res.send(db);
- 
-
-// });
-
 //GET / best practice is to use query parameters
 server.get("/", (req, res) => {
-  //res.send(db);
-  //console.log("hello from /");
+
   const {location} = req.query;
   if (!location) return res.send(db);
 
@@ -92,7 +85,7 @@ server.put("/", async (req, res) => {
     place.name = name;
     place.photo = photo;
   }
-  res.send("Success");
+  res.redirect("/");
 });
 
 //DELETE 
@@ -104,7 +97,7 @@ server.delete("/",(req,res)=>{
  
   if(index >-1 ){
     db.splice(index, 1);
-    res.send("Success");
+    res.redirect("/");
   }else {
     res.send({error: "Item not found"})
   }
