@@ -20,14 +20,14 @@ server.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}.`);
 });
 
-server.get("/", (req, res) => {
+server.get("/index.html", (req, res) => {
   res.send(db);
  
 
 });
 
 //GET / best practice is to use query parameters
-server.get("/index.html", (req, res) => {
+server.get("/", (req, res) => {
   //res.send(db);
   //console.log("hello from /");
   const {location} = req.query;
