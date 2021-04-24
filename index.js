@@ -64,7 +64,7 @@ server.post("/", async (req, res) => {
   };
   db.push(newLocation);
 
-  res.send(newLocation);
+  res.redirect("/");
   console.log(db);
 });
 
