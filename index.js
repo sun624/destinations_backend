@@ -20,11 +20,11 @@ server.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}.`);
 });
 
-server.get("/", (req, res) => {
-  res.send(db);
+// server.get("/", (req, res) => {
+//   res.send(db);
  
 
-});
+// });
 
 //GET / best practice is to use query parameters
 server.get("/", (req, res) => {
