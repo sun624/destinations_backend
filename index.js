@@ -20,7 +20,7 @@ server.listen(PORT, () => {
   console.log(`Server is listening on ${PORT}.`);
 });
 
-server.get("/index.html", (req, res) => {
+server.get("/", (req, res) => {
   res.send(db);
  
 
@@ -64,7 +64,7 @@ server.post("/", async (req, res) => {
   };
   db.push(newLocation);
 
-  res.redirect("/index.html");
+  res.redirect("/");
   console.log(db);
 });
 
