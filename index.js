@@ -27,7 +27,7 @@ server.get("/", (req, res) => {
 });
 
 //GET / best practice is to use query parameters
-server.get("/", (req, res) => {
+server.get("/index.html", (req, res) => {
   //res.send(db);
   //console.log("hello from /");
   const {location} = req.query;
