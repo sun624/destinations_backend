@@ -15,7 +15,6 @@ MongoClient.connect(
     useUnifiedTopology: true,
   },
   (err, client) => {
-    
     console.log("connect to Database");
 
     const destColletion = client.db("test").collection("Destination");
@@ -92,7 +91,7 @@ MongoClient.connect(
       // }
 
       // find the place in database which has the same uid from query
-      
+
       destColletion
         .findOneAndUpdate(
           { uid: uid },
@@ -106,9 +105,14 @@ MongoClient.connect(
           },
           { returnOriginal: false }
         )
-        .then(() => destColletion.find().toArray().then(result=>{
-          res.send(result)
-        }));
+        .then(() =>
+          destColletion
+            .find()
+            .toArray()
+            .then((result) => {
+              res.send(result);
+            })
+        );
       // const place = db.find((place) => place.uid === uid);
       // place.description = description ? description : place.description;
       // place.location = location ? location : place.location;
@@ -126,7 +130,12 @@ MongoClient.connect(
       console.log("INside DElete");
       const { uid } = req.body;
 
-      destColletion.deleteOne({uid:uid}).then(result=>res.redirect("/"))
+      destColletion.deleteOne({ uid: uid }).then(() =>
+        destColletion
+          .find()
+          .toArray()
+          .then((result) => res.send(result))
+      );
       // const index = db.findIndex((place) => place.uid === uid);
 
       // if (index > -1) {
