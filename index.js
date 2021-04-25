@@ -66,10 +66,10 @@ server.post("/", async (req, res) => {
 
 server.put("/", async (req, res) => {
   console.log("Inside PUT");
-  const  {uid}  = req.query;
-  console.log(uid);
+  // const  {uid}  = req.query;
+  // console.log(uid);
 
-  if(!uid || uid.length !== 6) return res.status(400).json({error:"uid is not right"});
+  // if(!uid || uid.length !== 6) return res.status(400).json({error:"uid is not right"});
   const {name,location, description } = req.body;
 
   if (!name && !location && !description) {
