@@ -1,11 +1,10 @@
 const express = require("express");
-
+const { getUID, getPhoto } = require("./Services");
 const cors = require("cors");
 const MongoClient = require("mongodb").MongoClient;
-//database
-//const { db } = require("./Database");
-const { getUID, getPhoto } = require("./Services");
+
 const server = express();
+
 //DATABASE
 const connectionString = process.env.connectionString;
 
@@ -74,55 +73,36 @@ MongoClient.connect(
       destColletion.insertOne(newLocation);
 
       res.redirect("/");
-      //console.log(destColletion);
     });
 
     //PUT /?uid :UPDATE operation
     server.put("/", async (req, res) => {
       console.log("Inside PUT");
-      // const  {uid}  = req.query;
-      // console.log(uid);
-
-      // if(!uid || uid.length !== 6) return res.status(400).json({error:"uid is not right"});
       const { uid, name, location, description } = req.body;
 
-      // if (!name && !location && !description) {
-      //   return res.status(400).json({error:"need at least one property to update"})
-      // }
-
-      // find the place in database which has the same uid from query
-
-      destColletion
-        .findOneAndUpdate(
-          { uid: uid },
-          {
-            $set: {
-              name: name,
-              location: location,
-              photo: await getPhoto(name),
-              description: description,
+      if (name || location || description) {
+        destColletion
+          .findOneAndUpdate(
+            { uid: uid },
+            {
+              $set: {
+                name: name,
+                location: location,
+                photo: await getPhoto(name),
+                description: description,
+              },
             },
-          },
-          { returnOriginal: false }
-        )
-        .then(() =>
-          destColletion
-            .find()
-            .toArray()
-            .then((result) => {
-              res.send(result);
-            })
-        );
-      // const place = db.find((place) => place.uid === uid);
-      // place.description = description ? description : place.description;
-      // place.location = location ? location : place.location;
-
-      // if (name) {
-      //   const photo = await getPhoto(name);
-      //   place.name = name;
-      //   place.photo = photo;
-      // }
-      // res.send(db);
+            { returnOriginal: false }
+          )
+          .then(() =>
+            destColletion
+              .find()
+              .toArray()
+              .then((result) => {
+                res.send(result);
+              })
+          );
+      }
     });
 
     //DELETE
@@ -136,14 +116,6 @@ MongoClient.connect(
           .toArray()
           .then((result) => res.send(result))
       );
-      // const index = db.findIndex((place) => place.uid === uid);
-
-      // if (index > -1) {
-      //   db.splice(index, 1);
-      //   res.send(db);
-      // } else {
-      //   res.send({ error: "Item not found" });
-      // }
     });
   }
 );
