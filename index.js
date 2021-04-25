@@ -8,7 +8,7 @@ const { getUID, getPhoto } = require("./Services");
 const server = express();
 //DATABASE
 const connectionString =
-  "mongodb+srv://sun624:19900624@cluster0.yrtr8.mongodb.net/test?retryWrites=true&w=majority";
+  process.env.connectionString;
 
 MongoClient.connect(
   connectionString,
