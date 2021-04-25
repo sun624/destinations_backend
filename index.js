@@ -16,7 +16,7 @@ MongoClient.connect(
     useUnifiedTopology: true,
   },
   (err, client) => {
-    if (err) return console.err(err);
+    
     console.log("connect to Database");
 
     const destColletion = client.db("test").collection("Destination");
