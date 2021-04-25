@@ -7,8 +7,7 @@ const MongoClient = require("mongodb").MongoClient;
 const { getUID, getPhoto } = require("./Services");
 const server = express();
 //DATABASE
-const connectionString =
-  process.env.connectionString;
+const connectionString = process.env.connectionString;
 
 MongoClient.connect(
   connectionString,
@@ -107,7 +106,9 @@ MongoClient.connect(
           },
           { returnOriginal: false }
         )
-        .then((result) => res.redirect("/"));
+        .then(() => destColletion.find().toArray().then(result=>{
+          res.send(result)
+        }));
       // const place = db.find((place) => place.uid === uid);
       // place.description = description ? description : place.description;
       // place.location = location ? location : place.location;
