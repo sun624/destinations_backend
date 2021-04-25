@@ -70,11 +70,11 @@ server.put("/", async (req, res) => {
   // console.log(uid);
 
   // if(!uid || uid.length !== 6) return res.status(400).json({error:"uid is not right"});
-  const {name,location, description } = req.body;
+  const {uid,name,location, description } = req.body;
 
-  if (!name && !location && !description) {
-    return res.status(400).json({error:"need at least one property to update"})
-  }
+  // if (!name && !location && !description) {
+  //   return res.status(400).json({error:"need at least one property to update"})
+  // }
 
   // find the place in database which has the same uid from query
   const place = db.find(place =>place.uid === uid)
