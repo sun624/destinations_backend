@@ -98,7 +98,7 @@ server.delete("/",(req,res)=>{
  
   if(index >-1 ){
     db.splice(index, 1);
-    res.redirect("/");
+    res.send(db);
   }else {
     res.send({error: "Item not found"})
   }
