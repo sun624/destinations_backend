@@ -92,7 +92,7 @@ server.put("/", async (req, res) => {
 //DELETE 
 server.delete("/",(req,res)=>{
   console.log("INside DElete");
-  const {uid} = req.query;
+  const {uid} = req.body;
   
   const index = db.findIndex(place => place.uid === uid);
  
