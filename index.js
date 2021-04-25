@@ -86,7 +86,7 @@ server.put("/", async (req, res) => {
     place.name = name;
     place.photo = photo;
   }
-  res.redirect("/");
+  res.send(db);
 });
 
 //DELETE 
